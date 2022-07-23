@@ -55,14 +55,14 @@ public class Market {
             System.out.println("_______________Hello_______________");
             System.out.println("TO EXIT FROM ANY MENU JUST LEAVE BLANK NAME");
             System.out.println("Please choose what you want to do");
-            System.out.println("[1] - Enter Marketplace1 as user");
-            System.out.println("[2] - Create user");
-            System.out.println("[3] - Delete user");
-            System.out.println("[4] - Change user data");
-            System.out.println("[5] - Create item");
-            System.out.println("[6] - Delete item");
-            System.out.println("[7] - Change item data");
-            System.out.println("[8] - Exit Market");
+            System.out.println("[1] - Enter Marketplace1 as user");                                                     //
+            System.out.println("[2] - Create user");                                                                    //+
+            System.out.println("[3] - Delete user");                                                                    //+
+            System.out.println("[4] - Change user data");                                                               //
+            System.out.println("[5] - Create item");                                                                    //+
+            System.out.println("[6] - Delete item");                                                                    //+
+            System.out.println("[7] - Change item data");                                                               //
+            System.out.println("[8] - Exit Market");                                                                    //+
 
             Scanner scanner = new Scanner(System.in);
             input = scanner.nextLine();
