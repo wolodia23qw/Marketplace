@@ -5,9 +5,9 @@ public class Market {
 
 
     public boolean isNumeric(String string) {
-        double Value;
+        Integer Value;
 
-        System.out.println(String.format("Parsing string: \"%s\"", string));
+
 
         if (string == null || string.equals("")) {
 
@@ -15,7 +15,7 @@ public class Market {
         }
 
         try {
-            Value = Double.parseDouble(string);
+            Value = Integer.parseInt(string);
             return true;
         } catch (NumberFormatException e) {
 
@@ -26,348 +26,338 @@ public class Market {
 
     public static void main(String[] args) {
         Market Market = new Market();
-        String items[][] = new String [5] [2000000];                                                                         // 1-ID 2-name 3-quantity 4-price 5-data
-        String users[][] = new String [5] [2000000];                                                                         // 1-ID 2-name 3-password 4-money 5-data
-        String userItems[][] = new String[3][2000000];                                                                     // 1-username 2-item name 3-quantity
-        String inMenu[] = new String[5];                   //
-        String inItem[] = new String[5];                   //
-        String inUser[] = new String[5];                   //
-        String inBS[] = new String[5];                     //
-        String name;
-        String password;
-        String money;
-        String itemcount;
-        Double mon = 0d;
-        String errors = "";
+        String products[][] = new String[3][3];
+        products[0][0] = "0";
+        products[0][1] = "1";
+        products[0][2] = "2";
+        products[1][0] = "phone";
+        products[1][1] = "laptop";
+        products[1][2] = "computer";
+        products[2][0] = "300";
+        products[2][1] = "1000";
+        products[2][2] = "5000";
+        String users[][] = new String[4][3];
+        users[0][0] = "0";
+        users[0][1] = "1";
+        users[0][2] = "2";
+        users[1][0] = "IGOR";
+        users[1][1] = "PETRO";
+        users[1][2] = "DIMA";
+        users[2][0] = "IGO";
+        users[2][1] = "PETR";
+        users[2][2] = "DINKO";
+        users[3][0] = "700";
+        users[3][1] = "2000";
+        users[3][2] = "17000";
+
+        String useritems[][] = new String[3][3];
+        useritems[0][0]="";
+        useritems[0][1]="";
+        useritems[0][2]="";
+        useritems[1][0]="";
+        useritems[1][1]="";
+        useritems[1][2]="";
+        useritems[2][0]="";
+        useritems[2][1]="";
+        useritems[2][2]="";
+
+        String error = "";
         String input;
-        boolean checker = false;
         int i = 0;
+        int o = 0;
+        int c = 0;
 
 
-
-        do {
-            if (errors.isEmpty()==false){
-                System.out.println("ERROR  - - - - -  "+errors+"  - - - - -  ERROR");
-                errors="";
+        while (true) {
+            if (error.isEmpty() == false) {
+                System.out.println("ERROR--------------- " + error);
+                error = "";
             }
-
-
-            System.out.println("_______________Hello_______________");
-            System.out.println("TO EXIT FROM ANY MENU JUST LEAVE BLANK NAME");
-            System.out.println("Please choose what you want to do");
-            System.out.println("[1] - Enter Marketplace1 as user");                                                     //
-            System.out.println("[2] - Create user");                                                                    //+
-            System.out.println("[3] - Delete user");                                                                    //+
-            System.out.println("[4] - Change user data");                                                               //
-            System.out.println("[5] - Create item");                                                                    //+
-            System.out.println("[6] - Delete item");                                                                    //+
-            System.out.println("[7] - Change item data");                                                               //
-            System.out.println("[8] - Exit Market");                                                                    //+
-
+            System.out.println("MENU");
+            System.out.println("[1] - Display all users");
+            System.out.println("[2] - Display all products");
+            System.out.println("[3] - BUY");
+            System.out.println("[4] - User products by user id");
+            System.out.println("[5] - User products by item id");
             Scanner scanner = new Scanner(System.in);
             input = scanner.nextLine();
-
             if (input.equals("1")) {
-
+                i = 0;
+                while (i < 3) {
+                    System.out.println("ID - " + users[0][i] + "  FIRST NAME - " + users[1][i] + "  LAST NAME - " + users[2][i] + "  MONEY - " + users[3][i]);
+                    i++;
+                }
             } else if (input.equals("2")) {
-
-                do {
-
-                    if (errors.isEmpty()==false){
-                        System.out.println("ERROR  - - - - -  "+errors+"  - - - - -  ERROR");
-                        errors="";
-                    }
-
-
-                    System.out.println("_______________USER CREATION_______________");
-                    System.out.println("TO EXIT FROM ANY MENU JUST LEAVE BLANK NAME");
-                    System.out.print("Input name: ");
-                    name=scanner.nextLine();
-                    System.out.print("\nInput password: ");
-                    password=scanner.nextLine();
-                    System.out.print("\nInput money");
-                    money=scanner.nextLine();
-                    name=name.trim();
-                    money=money.replaceAll("-","");
-                    money=money.replaceAll(",",".");
-                    if (name.isEmpty()==false && password.isEmpty()==false && Market.isNumeric(money)) {
-                        i = 0;
-                        while (users[1][i] != null) {
-
-                            if (users[0][i].equals(" ")){
-
-                                break;
-                            }
-                            if (users[1][i].equals(name)) {
-                                errors = "NAME ALREADY EXISTS";
-                                checker = true;
-
-                            }
-                            i++;
-                        }
-
-                        i = 0;
-                        if (checker==false) {
-                            while (users[0][i] != null ) {
-                                if (users[0][i].equals(" ")){
-                                    break;
-                                }
-                                System.out.println(i);
-                                i++;
-                            }
-                            users[0][i] = Integer.toString(i);
-                            users[1][i] = name;
-                            users[2][i] = password;
-                            users[3][i] = money;
-                            System.out.println(users[0][i] + users[1][i] + users[2][i] + users[3][i]);
-                            break;
-                            }
-                        }
-                        if (name.isEmpty()) {
-                            errors =errors+ "NAME CANNOT BE EMPTY ";
-                            break;
-
-                        }
-                        if (password.isEmpty()) {
-                            errors = errors + "PASSWORD CAN`T BE EMPTY ";
-                        }
-                        if (Market.isNumeric(money) == false) {
-                            errors = errors + "MONEY CANNOT BE EMPTY. ENTER NUMBER LIKE 12345 OR 123.45 OR 123,45";
-                        }
-
-                    checker = false;
-
-                }while (true);
-
+                i = 0;
+                while (i < 3) {
+                    System.out.println("ID - " + products[0][i] + "  NAME - " + products[1][i] + "  PRICE - " + products[2][i]);
+                    i++;
+                }
 
             } else if (input.equals("3")) {
-
-
-                do {
-
-                    if (errors.isEmpty()==false){
-                        System.out.println("ERROR  - - - - -  "+errors+"  - - - - -  ERROR");
-                        errors="";
+                System.out.println("INPUT USER ID");
+                input = scanner.nextLine();
+                if (input.equals("0")) {
+                    System.out.println("USER");
+                    System.out.println("ID - " + users[0][0] + "  FIRST NAME - " + users[1][0] + "  LAST NAME - " + users[2][0] + "  MONEY - " + users[3][0]);
+                    i = 0;
+                    System.out.println("MARKET ITEMS");
+                    while (i < 3) {
+                        System.out.println("ID - " + products[0][i] + "  NAME - " + products[1][i] + "  PRICE - " + products[2][i]);
+                        i++;
                     }
-
-
-                    System.out.println("_______________USER DELETE_______________");
-                    System.out.println("TO EXIT FROM ANY MENU JUST LEAVE BLANK NAME");
-                    System.out.print("Input name: ");
-                    name=scanner.nextLine();
-                    System.out.print("\nInput password: ");
-                    password=scanner.nextLine();
-
-
-                    name=name.trim();
-
-                    if (name.isEmpty()==false && password.isEmpty()==false ) {
-                        i = 0;
-                         if (users[0][0] != null) {
-                            while (users[1][i].equals(name) == false && users[2][i] != password) {                                                                                       //
-                                System.out.println(i);
-                                i++;
-                                if (users[0][i]==null){
-                                    checker = true;
-                                    break;
-                                }
-
-
-                            }
-                            if (checker){
-                                checker=false;
-                                errors="THIS NAME DOESN'T EXIST";
-                                break;
-
-                            }
-                            users[0][i] = " ";
-                            users[1][i] = " ";
-                            users[2][i] = " ";
-                            users[3][i] = " ";
-                            users[4][i] = " ";
-
-                            System.out.println("Deleted user data " + users[0][i] + users[1][i] + users[2][i] + users[3][i]);
-                            break;
-                        }else {
-                            errors="FIRST ADD NAME TO DELETE IT ";
-                            break;
-                        }
-                    }
-                    if (name.isEmpty()) {
-                        errors=errors+ "NAME CANNOT BE EMPTY ";
-                        break;
-
-                    }
-                    if (password.isEmpty()){
-                        errors= errors+"PASSWORD CAN`T BE EMPTY ";
-                    }
-
-
-                }while (true);
-
-
-            } else if (input.equals("4")) {
-
-            } else if (input.equals("5")) {
-                do {
-
-                    if (errors.isEmpty()==false){
-                        System.out.println("ERROR  - - - - -  "+errors+"  - - - - -  ERROR");
-                        errors="";
-                    }
-
-
-                    System.out.println("_______________ITEM CREATION_______________");
-                    System.out.println("TO EXIT FROM ANY MENU JUST LEAVE BLANK NAME");
-                    System.out.print("Input name: ");
-                    name=scanner.nextLine();
-                    System.out.print("\nItem count: ");
-                    itemcount=scanner.nextLine();
-
-                    System.out.print("\nInput price");
-                    money=scanner.nextLine();
-                    name=name.trim();
-                    money=money.trim();
-                    itemcount= itemcount.trim();
-
-
-                    money=money.replaceAll("-","");
-                    money=money.replaceAll(",",".");
-
-                    itemcount=itemcount.replaceAll("-","");
-
-                    itemcount=itemcount.replaceAll("\\.","");
-
-                    System.out.println(Market.isNumeric(itemcount));
-
-                    if (name.isEmpty()==false && Market.isNumeric(itemcount) && Market.isNumeric(money)) {
-                        i = 0;
-                        while (items[1][i] != null) {
-
-                            if (items[0][i].equals(" ")){
-
-                                break;
-                            }
-                            if (items[1][i].equals(name)) {
-                                errors = "NAME ALREADY EXISTS";
-                                checker = true;
-
-                            }
-                            i++;
+                    System.out.println("ENTER PRODUCT ID");
+                    input = scanner.nextLine();
+                    if (input.equals("0")) {
+                        c = Integer.parseInt(input);
+                        i = Integer.parseInt(users[3][0]);
+                        o = Integer.parseInt(products[2][c]);
+                        if (i >= o) {
+                            i = i - o;
+                            users[3][0] = String.valueOf(i);
+                            useritems[0][c] = products[1][c];
+                            System.out.println("NOW ITEM IS YOURS");
+                        } else {
+                            System.out.println("NOT ENOUGH MONEY");
                         }
 
-                        i = 0;
-                        if (checker==false) {
-                            while (items[0][i] != null ) {
-                                if (items[0][i].equals(" ")){
-                                    break;
-                                }
-                                System.out.println(i);
-                                i++;
-                            }
-                            items[0][i] = Integer.toString(i);
-                            items[1][i] = name;
-                            items[2][i] = itemcount;
-                            items[3][i] = money;
-                            System.out.println(items[0][i] + items[1][i] + items[2][i] + items[3][i]);
-                            break;
+                    } else if (input.equals("1")) {
+                        c = Integer.parseInt(input);
+                        System.out.println(c);
+                        i = Integer.parseInt(users[3][0]);
+                        o = Integer.parseInt(products[2][c]);
+                        if (i >= o) {
+                            i = i - o;
+                            users[3][0] = String.valueOf(i);
+                            useritems[0][c] = products[1][c];
+                            System.out.println("NOW ITEM IS YOURS");
+                        } else {
+                            System.out.println("NOT ENOUGH MONEY");
                         }
-                    }
-                    if (name.isEmpty()) {
-                        errors =errors+ "NAME CANNOT BE EMPTY ";
-                        break;
 
-                    }
-                    if (Market.isNumeric(itemcount)==false) {
-                        errors = errors + "ITEM COUNT CAN`T BE EMPTY. ENTER NUMBER";
-                    }
-                    if (Market.isNumeric(money) == false) {
-                        errors = errors + "MONEY CANNOT BE EMPTY. ENTER NUMBER LIKE 12345 OR 123.45 OR 123,45";
-                    }
-
-                    checker = false;
-
-                }while (true);
-
-
-            } else if (input.equals("6")) {
-
-                do {
-
-                    if (errors.isEmpty()==false){
-                        System.out.println("ERROR  - - - - -  "+errors+"  - - - - -  ERROR");
-                        errors="";
-                    }
-
-
-                    System.out.println("_______________ITEM DELETE_______________");
-                    System.out.println("TO EXIT FROM ANY MENU JUST LEAVE BLANK NAME");
-                    System.out.print("Input name: ");
-                    name=scanner.nextLine();
-
-                    name=name.trim();
-
-
-
-
-
-
-
-                    if (name.isEmpty()==false ) {
-                        i = 0;
-
-                        while (items[1][i] != null ) {
-
-                            if (items[1][i].equals(name)) {
-                                items[0][i] = " ";
-                                items[1][i] = " ";
-                                items[2][i] = " ";
-                                items[3][i] = " ";
-                                System.out.println(items[0][i] + items[1][i] + items[2][i] + items[3][i]);
-                                checker = true;
-                                break;
-                            }
-                            i++;
-
-
-
-                            }
-
-                        if (checker){
-                            checker=false;
-                            break;
-                        }else {
-                            errors = "ITEM NOT FOUND ";
+                    } else if (input.equals("2")) {
+                        c = Integer.parseInt(input);
+                        i = Integer.parseInt(users[3][0]);
+                        o = Integer.parseInt(products[2][c]);
+                        if (i >= o) {
+                            i = i - o;
+                            users[3][0] = String.valueOf(i);
+                            useritems[0][c] = products[1][c];
+                            System.out.println("NOW ITEM IS YOURS");
+                        } else {
+                            System.out.println("NOT ENOUGH MONEY");
                         }
 
 
+                    }
+
+                    System.out.println("YOUR MONEY - " + users[3][0]);
+                } else if (input.equals("1")) {
+                    System.out.println("USER");
+                    System.out.println("ID - " + users[0][1] + "  FIRST NAME - " + users[1][1] + "  LAST NAME - " + users[2][1] + "  MONEY - " + users[3][1]);
+                    i = 0;
+                    System.out.println("MARKET ITEMS");
+                    while (i < 3) {
+                        System.out.println("ID - " + products[0][i] + "  NAME - " + products[1][i] + "  PRICE - " + products[2][i]);
+                        i++;
+                    }
+                    System.out.println("ENTER PRODUCT ID");
+                    input = scanner.nextLine();
+                    if (input.equals("0")) {
+                        c = Integer.parseInt(input);
+                        i = Integer.parseInt(users[3][1]);
+                        o = Integer.parseInt(products[2][c]);
+                        if (i >= o) {
+                            i = i - o;
+                            users[3][1] = String.valueOf(i);
+                            useritems[1][c] = products[1][c];
+                            System.out.println("NOW ITEM IS YOURS");
+                        } else {
+                            System.out.println("NOT ENOUGH MONEY");
+                        }
+
+                    } else if (input.equals("1")) {
+                        c = Integer.parseInt(input);
+                        i = Integer.parseInt(users[3][1]);
+                        o = Integer.parseInt(products[2][c]);
+                        if (i >= o) {
+                            i = i - o;
+                            users[3][1] = String.valueOf(i);
+                            useritems[1][c] = products[1][c];
+                            System.out.println("NOW ITEM IS YOURS");
+                        } else {
+                            System.out.println("NOT ENOUGH MONEY");
+                        }
+
+                    } else if (input.equals("2")) {
+                        c = Integer.parseInt(input);
+                        i = Integer.parseInt(users[3][1]);
+                        o = Integer.parseInt(products[2][c]);
+                        if (i >= o) {
+                            i = i - o;
+                            users[3][1] = String.valueOf(i);
+                            useritems[1][c] = products[1][c];
+                            System.out.println("NOW ITEM IS YOURS");
+                        } else {
+
+                            System.out.println("NOT ENOUGH MONEY");
+                        }
 
 
                     }
+                    System.out.println("YOUR MONEY -   " + users[3][1]);
+
+                } else if (input.equals("2")) {
+                    System.out.println("USER");
+                    System.out.println("ID - " + users[0][2] + "  FIRST NAME - " + users[1][2] + "  LAST NAME - " + users[2][2] + "  MONEY - " + users[3][2]);
+                    i = 0;
+                    System.out.println("MARKET ITEMS");
+                    while (i < 3) {
+                        System.out.println("ID - " + products[0][i] + "  NAME - " + products[1][i] + "  PRICE - " + products[2][i]);
+                        i++;
+                    }
+                    System.out.println("ENTER PRODUCT ID");
+                    input = scanner.nextLine();
+                    if (input.equals("0")) {
+                        c = Integer.parseInt(input);
+                        i = Integer.parseInt(users[3][2]);
+                        o = Integer.parseInt(products[2][c]);
+                        if (i >= o) {
+                            i = i - o;
+                            users[3][2] = String.valueOf(i);
+                            useritems[2][c] = products[1][c];
+                            System.out.println("NOW ITEM IS YOURS");
+                        } else {
+                            System.out.println("NOT ENOUGH MONEY");
+                        }
+
+                    } else if (input.equals("1")) {
+                        c = Integer.parseInt(input);
+                        i = Integer.parseInt(users[3][2]);
+                        o = Integer.parseInt(products[2][c]);
+                        if (i >= o) {
+                            i = i - o;
+                            users[3][2] = String.valueOf(i);
+                            useritems[2][c] = products[1][c];
+                            System.out.println("NOW ITEM IS YOURS");
+                        } else {
+                            System.out.println("NOT ENOUGH MONEY");
+                        }
+
+                    } else if (input.equals("2")) {
+                        c = Integer.parseInt(input);
+                        i = Integer.parseInt(users[3][2]);
+                        o = Integer.parseInt(products[2][c]);
+                        if (i >= o) {
+                            i = i - o;
+                            users[3][2] = String.valueOf(i);
+                            useritems[2][c] = products[1][c];
+                            System.out.println("NOW ITEM IS YOURS");
+                        } else {
+
+                            System.out.println("NOT ENOUGH MONEY");
+                        }
 
 
-                    if (name.isEmpty()) {
-                        errors =errors+ "NAME CANNOT BE EMPTY ";
-                        break;
+                    } else {
+                        System.out.println("NO USER WITH THIS ID");
+                    }
+                    System.out.println(Arrays.toString(useritems[0]));
+                    System.out.println(Arrays.toString(useritems[1]));
+                    System.out.println(Arrays.toString(useritems[2]));
+                }
+
+                } else if (input.equals("4")) {
+                System.out.print("input user id: ");
+                input=scanner.nextLine();
+                if (input.equals("0")){
+                    i=0;
+                    System.out.println("FIRST NAME - " + users[1][i] + "  LAST NAME - " + users[2][i]);
+                    System.out.println(useritems[i][0]+" "+useritems[i][1]+" "+useritems[i][2]);
+                } else if (input.equals("1")) {
+                    i=1;
+                    System.out.println("FIRST NAME - " + users[1][i] + "  LAST NAME - " + users[2][i]);
+                    System.out.println(useritems[i][0]+" "+useritems[i][1]+" "+useritems[i][2]);
+
+                } else if (input.equals("2")) {
+                    i=2;
+                    System.out.println("FIRST NAME - " + users[1][i] + "  LAST NAME - " + users[2][i]);
+                    System.out.println(useritems[i][0]+" "+useritems[i][1]+" "+useritems[i][2]);
+
+
+                }else {
+                    System.out.println("THIS USER ID NOT EXISTS");
+                }
+
+
+
+
+
+
+                } else if (input.equals("5")) {
+                System.out.println("Input item id: ");
+                input=scanner.nextLine();
+                if (input.equals("0")){
+
+                    if (useritems[0][0].isEmpty()==false){
+                        System.out.println(users[1][0]);
                     }
 
 
+                    if (useritems[1][ 0 ].isEmpty()==false) {
+                        System.out.println(users[1][1]);
 
 
-                }while (true);
+                    }
+                    if (useritems[2][0].isEmpty()==false) {
+                        System.out.println(users[1][2]);
+
+                    }
+
+                } else if (input.equals("1")) {
+                    if (useritems[0][1].isEmpty()==false){
+                        System.out.println(users[1][0]);
+                    }
 
 
+                    if (useritems[1][1].isEmpty()==false) {
+                        System.out.println(users[1][1]);
 
 
-            } else if (input.equals("7")) {
+                    }
+                    if (useritems[2][1].isEmpty()==false) {
+                        System.out.println(users[1][2]);
 
-            } else if (input.equals("8")) {
-                break;
+                    }
+
+                } else if (input.equals("2")) {
+                    if (useritems[0][2].isEmpty()==false){
+                        System.out.println(users[1][0]);
+                    }
+
+
+                    if (useritems[1][2].isEmpty()==false) {
+                        System.out.println(users[1][1]);
+
+
+                    }
+                    if (useritems[2][2].isEmpty()==false) {
+                        System.out.println(users[1][2]);
+
+                    }
+
+                } else {
+                    System.out.println("THIS ID DOESNT EXIST");
+                }
+
             } else {
+                    error = "INCORRECT INPUT. INPUT OPTION NUMBER";
+                }
 
-                errors = input + " - THIS IS NOT AN OPTION.    INPUT NUMBER 1  2  3  4  5  6  7  8.";
-            }
 
-        }while (true);
+
+
+
+        }
     }
 }
